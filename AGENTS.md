@@ -10,4 +10,4 @@
 - 单文件 HTML 可以使用 `python3 scripts/publish.py /absolute/path/to/file.html` 上传；需已授权的 GitHub CLI。
 - 多文件页面通过 Git 将 HTML 和资源一同提交到 main。
 - 推送后检查 Pages 部署结果，再打开页面验证并返回 `https://elarazju.github.io/pages/<filename>.html`。
-- 首页自动获取 `pages/` 下的 HTML 文件列表，无需修改首页。
+- GitHub Actions 发布时自动生成 `pages/` 下的 HTML 文件列表，无需修改首页或目录。

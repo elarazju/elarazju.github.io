@@ -28,4 +28,4 @@ python3 scripts/publish.py /absolute/path/to/page.html
 
 默认使用输入文件的文件名；如有重名会拒绝覆盖。使用 `--name unique-name.html` 选择其他名称。输出网址后需等待 GitHub Pages 部署完成。
 
-本站采用纯静态 HTML/CSS/JS，GitHub Pages 从 `main` 分支根目录发布，`.nojekyll` 禁用 Jekyll 处理。目录通过公开 GitHub API 获取；API 限流不影响已发布页面的直接访问。
+本站采用纯静态 HTML/CSS/JS。每次提交到 `main`，GitHub Actions 自动生成网页目录并部署到 Pages。目录随网页一起发布，不依赖访客调用 GitHub API。`pages.json` 是本地预览用的初始目录，线上目录由构建自动生成。

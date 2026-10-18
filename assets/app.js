@@ -9,11 +9,11 @@ document.getElementById('copy-prompt').addEventListener('click', async () => {
 async function loadPages() {
   const status = document.getElementById('list-status');
   try {
-    const response = await fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`, { signal: AbortSignal.timeout(12000) });
+    const response = await fetch('pages.json', { cache: 'no-cache', signal: AbortSignal.timeout(12000) });
     if (!response.ok) throw new Error('目录暂时不可用');
     const data = await response.json();
-    if (!Array.isArray(data.tree)) throw new Error('目录格式异常');
-    const pages = data.tree.filter(item => item.type === 'blob' && item.path.startsWith('pages/') && /\.html?$/i.test(item.path)).sort((a,b) => a.path.localeCompare(b.path));
+    if (!Array.isArray(data.pages)) throw new Error('目录格式异常');
+    const pages = data.pages.filter(path => typeof path === 'string' && path.startsWith('pages/') && /\.html?$/i.test(path)).sort().map(path => ({path}));
     const list = document.getElementById('page-list');
     list.replaceChildren();
     for (const file of pages) {
@@ -28,7 +28,7 @@ async function loadPages() {
       link.append(icon, info, arrow); list.append(link);
     }
     document.getElementById('page-count').textContent = `${pages.length} 个网页`;
-    status.textContent = data.truncated ? '目录较大，完整列表请查看 GitHub 仓库。' : '目录来自 GitHub。新上传的网页需等待部署完成后才能打开。';
+    status.textContent = '目录随网页一起发布。新上传的网页会在部署完成后显示。';
   } catch {
     status.replaceChildren(document.createTextNode('目录暂时无法同步，示例仍可访问。'));
     const link = document.createElement('a'); link.href = `https://github.com/${repo}/tree/main/pages`; link.textContent = ' 查看全部文件 ↗'; status.append(link);
