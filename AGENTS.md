@@ -2,6 +2,8 @@
 
 本仓库是公开的 GitHub Pages HTML 展示空间。
 
+当前用途是每天的 AI 日报归档。默认将日报保存为 `pages/YYYY-MM-DD.html`，日期按 `Asia/Shanghai` 确定。同日更新可替换当天文件（Contents API 更新时需先读取 SHA），保留其他历史日报。新闻内容必须核实并保留来源链接。不要自动创建定时任务，除非用户要求。
+
 - 发布目标为 `elarazju/elarazju.github.io` 的 `main` 分支。
 - 默认在 `pages/` 下新增独立 HTML，使用唯一的英文文件名；除非用户明确要求更新，不覆盖已有文件。
 - 相关静态资源放在同一页面的独立资源目录，并使用相对路径。

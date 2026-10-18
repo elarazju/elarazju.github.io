@@ -1,8 +1,12 @@
-# HTML Space
+# AI 日报归档
 
 网址：https://elarazju.github.io/
 
-用于展示和分享 AI 生成的 HTML。所有发布的文件均可公开访问。
+用于展示和分享每天的 AI 日报 HTML。所有发布的文件均可公开访问。
+
+日报使用 `pages/YYYY-MM-DD.html` 命名，日期以 `Asia/Shanghai` 时区为准；首页按日期倒序展示。同日重发更新当天文件，保留其他历史日报。`pages/hello.html` 只是发布示例。
+
+计划中的 Make 上传流程：Custom webhook 接收 `date` 和 `html` → 校验日期并生成固定路径 → 使用 Make 内保存的 GitHub 授权读取现有文件 SHA（存在时）→ 写入当天日报 → 返回 `committed` 状态和预计网址。GitHub Pages 随后异步发布。Make webhook 尚未创建，当前可通过 GitHub 直接上传。
 
 ## 给 AI 的发布指令
 
