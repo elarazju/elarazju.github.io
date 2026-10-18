@@ -29,7 +29,8 @@ async function loadPages() {
     }
     document.getElementById('page-count').textContent = `${pages.length} 个网页`;
     status.textContent = '目录随网页一起发布。新上传的网页会在部署完成后显示。';
-  } catch {
+  } catch (error) {
+    console.warn('Directory sync failed:', error);
     status.replaceChildren(document.createTextNode('目录暂时无法同步，示例仍可访问。'));
     const link = document.createElement('a'); link.href = `https://github.com/${repo}/tree/main/pages`; link.textContent = ' 查看全部文件 ↗'; status.append(link);
   }
